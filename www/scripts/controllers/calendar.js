@@ -72,6 +72,7 @@ function CalendarCtrl($scope, Api) {
     firstDay: 1,
     height: 450,
     editable: true,
+    slotMinutes: 15,
     header:{
       left: '',
       center: '',
