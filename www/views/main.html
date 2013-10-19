@@ -1,45 +1,45 @@
-<div role="main">
-    <div class="container">
-        <section id="directives-calendar" ng-controller="CalendarCtrl">
-            <div class="page-header">
-                <h1>HenHo</h1>
+
+<section id="directives-calendar" ng-controller="CalendarCtrl">
+    <div class="page-header">
+        <h1>HenHo</h1>
+    </div>
+    <div class="row">
+        <div class="span12">
+            <div class="alert alert-success" ng-show="alertMessage != undefined && alertMessage != ''">
+                <h4>{{alertMessage}}</h4>
             </div>
-            <div class="well">
-                <div class="row-fluid">
-                    <div class="span4">
+        </div>
+    </div>
+    <div class="well">
+        <div class="row-fluid">
+            <div class="span4">
 
-                        <div class="btn-group calTools">
-                            <button type="button" class="btn btn-primary" ng-click="addEvent(selectedDate)">
-                                Add Event
-                            </button>
+                <div class="btn-group calTools">
+                    <button type="button" class="btn btn-primary" ng-click="addEvent(selectedDate)">
+                        Add Event
+                    </button>
+                </div>
+
+                <ul class="unstyled">
+                    <li ng-repeat="e in events">
+                        <div class="alert alert-info">
+                            <a class="close" ng-click="remove($index)"><i class="icon-remove"></i></a>
+                            <b> {{e.title}}</b> - {{e.start | date:"MMM dd"}}
                         </div>
+                    </li>
+                </ul>
 
-                        <ul class="unstyled">
-                            <li ng-repeat="e in events">
-                                <div class="alert alert-info">
-                                    <a class="close" ng-click="remove($index)"><i class="icon-remove"></i></a>
-                                    <b> {{e.title}}</b> - {{e.start | date:"MMM dd"}}
-                                </div>
-                            </li>
-                        </ul>
+            </div>
 
-                    </div>
-
-                    <div class="span8">
-                        <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
-                            <h4>{{alertMessage}}</h4>
-                        </div>
-                        <div class="btn-toolbar">
-                            <p class="pull-right lead">Calendar Two View Options</p>
-                            <div class="btn-group">
-                                <button class="btn btn-success" ng-click="changeView('agendaDay', myCalendar2)">AgendaDay</button>
-                                <button class="btn btn-success" ng-click="changeView('agendaWeek', myCalendar2)">AgendaWeek</button>
-                            </div>
-                        </div>
-                        <div class="calendar" ng-model="eventSources" calendar="myCalendar2" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
+            <div class="span8">
+                <div class="calendar" ng-model="eventSources" calendar="myCalendar2" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
+                <div class="btn-toolbar">
+                    <div class="btn-group">
+                        <button class="btn btn-success" ng-click="changeView('agendaDay', myCalendar2)">AgendaDay</button>
+                        <button class="btn btn-success" ng-click="changeView('agendaWeek', myCalendar2)">AgendaWeek</button>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
-</div>
+</section>
