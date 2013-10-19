@@ -54,6 +54,7 @@ function CalendarCtrl($scope, Api) {
 
   $scope.goToDate = function (date) {
     date = createDateFromString(date);
+    $scope.myCalendar1.fullCalendar('gotoDate', date.getFullYear(), date.getMonth(), date.getDate());
     $scope.myCalendar2.fullCalendar('gotoDate', date.getFullYear(), date.getMonth(), date.getDate());
   };
 
