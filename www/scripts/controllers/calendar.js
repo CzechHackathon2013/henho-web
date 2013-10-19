@@ -1,3 +1,6 @@
+var dump = function (v) {
+  console.log(v);
+};
 
 function CalendarCtrl($scope, Api) {
   var date = new Date();
