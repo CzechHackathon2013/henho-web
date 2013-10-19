@@ -76,7 +76,7 @@ function CalendarCtrl($scope, Api) {
     header:{
       left: 'agendaWeek,agendaDay',
       center: '',
-      right: 'today prev,next'
+      right: ''
     },
     dayClick: $scope.alertEventOnClick,
     eventRender: function (view, el) {
