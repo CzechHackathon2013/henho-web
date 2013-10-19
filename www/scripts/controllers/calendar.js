@@ -1,16 +1,16 @@
 
-function CalendarCtrl($scope) {
+function CalendarCtrl($scope, Api) {
   var date = new Date();
   var d = date.getDate();
   var m = date.getMonth();
   var y = date.getFullYear();
 
+  Api.metting.show({id: '1'}, function (meeting) {
+    $scope.meeting = meeting;
+  });
+
   $scope.selectedDate = date;
-  $scope.eventSource = {
-    url: "http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic",
-    className: 'gcal-event',           // an option!
-    currentTimezone: 'America/Chicago' // an option!
-  };
+
   /* event source that contains custom events on the scope */
   $scope.events = [
     {title: 'All Day Event',start: new Date(y, m, 1)},
@@ -82,6 +82,6 @@ function CalendarCtrl($scope) {
     }
   };
   /* event sources array*/
-  $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
+  $scope.eventSources = [$scope.events, $scope.eventsF];
 }
 /* EOF */
