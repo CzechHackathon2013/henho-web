@@ -29,9 +29,9 @@
                     </div>
 
                     <ul class="unstyled">
-                        <li ng-repeat="e in events">
+                        <li ng-repeat="e in meeting.proposedTimes">
                             <div class="alert alert-info">
-                                <a ng-click="goToDate(e.title)"><b>{{e.title}}</b></a>
+                                <a ng-click="goToDate(e.date)"><b>{{e.date}}</b></a>
                             </div>
                         </li>
                     </ul>

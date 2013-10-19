@@ -24,7 +24,20 @@ function CalendarCtrl($scope, Api) {
 
     if(meeting.proposedTimes && meeting.proposedTimes.length) {
       angular.forEach(meeting.proposedTimes, function (item) {
-        $scope.addEvent(item.date);
+        var day = createDateFromString(item.date);
+
+        $scope.events.push({
+          title: meeting.subject || '',
+          start: new Date(day.getTime() + (item.start.split(':')[0] * 60 * 60 * 1000)),
+          end: new Date(day.getTime() + (item.end.split(':')[0] * 60 * 60 * 1000)),
+          allDay: false,
+          durationEditable: false,
+          startEditable: false,
+          editable: true,
+          color: 'grey',
+          textColor: 'black',
+          className: ['proposedTime']
+        });
       });
     }
   });
@@ -32,7 +45,7 @@ function CalendarCtrl($scope, Api) {
   $scope.selectedDate = date;
 
   $scope.goToDate = function (date) {
-    date = new Date(date);
+    date = createDateFromString(date);
     $scope.myCalendar2.fullCalendar('gotoDate', date.getFullYear(), date.getMonth(), date.getDate());
   };
 
@@ -57,7 +70,7 @@ function CalendarCtrl($scope, Api) {
   };
 
   /* add custom event*/
-  $scope.addEvent = function(selectedDate, endDate) {
+  $scope.addEvent = function(selectedDate) {
     selectedDate = new Date(selectedDate);
     var event = {
       title: $scope.meeting.subject || '',
