@@ -8,18 +8,27 @@ function CalendarCtrl($scope, Api) {
   var m = date.getMonth();
   var y = date.getFullYear();
 
+  var createDateFromString = function (string) {
+    var date = string.split('.').reverse();
+    return new Date(date[0], date[1], date[2]);
+  };
+
+  $scope.events = [];
+
   Api.metting.show({id: '1'}, function (meeting) {
     $scope.meeting = meeting;
-    if(meeting.proposedTime.length && meeting.proposedTime[0]) {
-      $scope.goToEvent(meeting.proposedTime[0]);
+
+    if(meeting.proposedTimes && meeting.proposedTimes.length) {
+      angular.forEach(meeting.proposedTimes, function (item) {
+        $scope.addEvent(createDateFromString(item.date));
+      });
     }
   });
 
   $scope.selectedDate = date;
 
-  $scope.goToEvent = function (e) {
-    var date = e.date.split('.').reverse();
-    date = new Date(date[0], date[1], date[2]);
+  $scope.goToDate = function (date) {
+    date = new Date(date);
     $scope.myCalendar2.fullCalendar('gotoDate', date.getFullYear(), date.getMonth(), date.getDate());
   };
 
@@ -52,13 +61,17 @@ function CalendarCtrl($scope, Api) {
   };
 
   /* add custom event*/
-  $scope.addEvent = function(selectedDate) {
-    $scope.events.push({
-      title: 'New event!!',
+  $scope.addEvent = function(selectedDate, endDate) {
+    var event = {
+      title: selectedDate + '',
+      date: selectedDate,
       start: selectedDate,
-      end: selectedDate,
+      end: endDate || selectedDate,
+      allDay: false,
       className: ['openSesame']
-    });
+    };
+//    dump(event);
+    $scope.events.push(event);
   };
   /* Change View */
   $scope.changeView = function(view,calendar) {
@@ -80,6 +93,7 @@ function CalendarCtrl($scope, Api) {
       eventResize: $scope.alertOnResize
     }
   };
+
   /* event sources array*/
   $scope.eventSources = [$scope.events, $scope.eventsF];
 }
