@@ -69,10 +69,11 @@ function CalendarCtrl($scope, Api) {
   $scope.uiConfig = {
     calendar:{
       defaultView: 'agendaDay',
+      firstDay: 1,
       height: 450,
       editable: true,
       header:{
-        left: 'title',
+        left: '',
         center: '',
         right: 'today prev,next'
       },
