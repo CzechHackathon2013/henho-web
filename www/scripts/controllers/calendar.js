@@ -74,7 +74,7 @@ function CalendarCtrl($scope, Api) {
     editable: true,
     slotMinutes: 15,
     header:{
-      left: '',
+      left: 'agendaWeek,agendaDay',
       center: '',
       right: 'today prev,next'
     },
