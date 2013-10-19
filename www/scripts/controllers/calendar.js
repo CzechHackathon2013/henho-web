@@ -2,7 +2,7 @@ var dump = function (v) {
   console.log(v);
 };
 
-function CalendarCtrl($scope, Api) {
+function CalendarCtrl($scope, $modal, Api) {
   var createDateFromString = function (string) {
     var date = new Date(string);
     if(!date || date == 'Invalid Date') {
@@ -49,11 +49,25 @@ function CalendarCtrl($scope, Api) {
     $scope.myCalendar1.fullCalendar('gotoDate', date.getFullYear(), date.getMonth(), date.getDate());
   };
 
-  /* alert on eventClick */
-  $scope.onEventClick = function(){
-//    $scope.$apply(function(){
-//      $scope.addEvent(date);
-//    });
+
+  $scope.onEventClick = function(event){
+//    dump(event);
+    $scope.$apply(function () {
+      var modalInstance = $modal.open({
+        templateUrl: '/views/modals/timepicker.html',
+        controller: ModalCtrl,
+        resolve: {
+          event: function () {
+            return event;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (event) {
+    });
+
+
+    });
   };
 
   /* add custom event*/

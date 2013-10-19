@@ -9,7 +9,8 @@ var henho = angular.module('henho', [
   'henho.directive',
   'henho.service',
   'ngSanitize',
-  'ui.calendar'
+  'ui.calendar',
+  'ui.bootstrap.modal'
 ]);
 
 henho.config(function ($routeProvider) {
