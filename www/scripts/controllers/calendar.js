@@ -23,7 +23,6 @@ function CalendarCtrl($scope, Api) {
         var day = createDateFromString(item.date);
         var start = new Date(day.getTime() + (item.start.split(':')[0] * 60 * 60 * 1000))
         var end = new Date(day.getTime() + (item.end.split(':')[0] * 60 * 60 * 1000));
-        $scope.addDisabledEvent(item.subject, start, end);
         $scope.addEditableEvent(item.subject, start, end);
       });
     }
@@ -40,25 +39,9 @@ function CalendarCtrl($scope, Api) {
     })
   };
 
-  $scope.addDisabledEvent = function (title, start, end) {
-    $scope.disabledEvents.push({
-      title: title,
-      start: start,
-      end: end,
-      allDay: false,
-      durationEditable: false,
-      startEditable: false,
-      editable: true,
-      color: 'grey',
-      textColor: 'black',
-      className: ['disabledTime']
-    });
-  };
-
   $scope.goToDate = function (date) {
     date = createDateFromString(date);
     $scope.myCalendar1.fullCalendar('gotoDate', date.getFullYear(), date.getMonth(), date.getDate());
-    $scope.myCalendar2.fullCalendar('gotoDate', date.getFullYear(), date.getMonth(), date.getDate());
   };
 
   /* alert on eventClick */
@@ -77,7 +60,6 @@ function CalendarCtrl($scope, Api) {
   /* Change View */
   $scope.changeView = function(view) {
     $scope.myCalendar1.fullCalendar('changeView',view);
-    $scope.myCalendar2.fullCalendar('changeView',view);
   };
 
   $scope.calendar1 = {
@@ -90,23 +72,22 @@ function CalendarCtrl($scope, Api) {
       center: '',
       right: 'today prev,next'
     },
-    dayClick: $scope.alertEventOnClick
-  };
+    dayClick: $scope.alertEventOnClick,
+    eventRender: function (view, el) {
+      angular.forEach($scope.events, function (item) {
+        if(item.start >= view.start && item.start <= view.end) {
+          var startRows = item.start.getHours() * 2;
+          var endRows = item.end.getHours() * 2;
+          for(var i = startRows; i <= endRows; i++) {
+            $('.fc-slot' + i).addClass('editableRow');
+          }
+        }
 
-  $scope.calendar2 = {
-    defaultView: 'agendaDay',
-    firstDay: 1,
-    height: 450,
-    editable: true,
-    header:{
-      left: '',
-      center: '',
-      right: 'today prev,next'
+      });
     }
   };
 
   /* event sources array*/
   $scope.eventSources1 = [$scope.events];
-  $scope.eventSources2 = [$scope.disabledEvents];
 }
 /* EOF */

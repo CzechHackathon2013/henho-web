@@ -1,4 +1,6 @@
-
+.editableRow {
+    background: #000000;
+}
 .bs-docs-social {
     margin-top: 1em;
     padding: 15px 0;
