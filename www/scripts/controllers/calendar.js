@@ -68,6 +68,7 @@ function CalendarCtrl($scope) {
   /* config object */
   $scope.uiConfig = {
     calendar:{
+      defaultView: 'agendaDay',
       height: 450,
       editable: true,
       header:{
