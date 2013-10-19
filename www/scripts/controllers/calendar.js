@@ -58,15 +58,14 @@ function CalendarCtrl($scope, Api) {
 
   /* add custom event*/
   $scope.addEvent = function(selectedDate, endDate) {
-    selectedDate = createDateFromString(selectedDate);
+    selectedDate = new Date(selectedDate);
     var event = {
-      title: selectedDate.getDate() + '.' + selectedDate.getMonth() + '.' + selectedDate.getFullYear(),
+      title: $scope.meeting.subject || '',
       start: selectedDate,
-      end: endDate || selectedDate,
+      end: new Date(selectedDate.getTime() + (60*60*1000)),
       allDay: false,
       className: ['openSesame']
     };
-//    dump(event);
     $scope.events.push(event);
   };
   /* Change View */
