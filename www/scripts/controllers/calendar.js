@@ -50,10 +50,10 @@ function CalendarCtrl($scope, Api) {
   };
 
   /* alert on eventClick */
-  $scope.alertEventOnClick = function( date, allDay, jsEvent, view ){
-    $scope.$apply(function(){
-      $scope.addEvent(date);
-    });
+  $scope.onEventClick = function(){
+//    $scope.$apply(function(){
+//      $scope.addEvent(date);
+//    });
   };
 
   /* add custom event*/
@@ -79,7 +79,7 @@ function CalendarCtrl($scope, Api) {
       center: '',
       right: ''
     },
-    dayClick: $scope.alertEventOnClick,
+    eventClick: $scope.onEventClick,
     eventRender: function (view, el) {
       var multiple = 60 / this.slotMinutes;
       for(var i = 0; i <= this.slotMinutes * multiple; i++) {
