@@ -7,7 +7,7 @@ function CalendarCtrl($scope, Api) {
     var date = new Date(string);
     if(!date || date == 'Invalid Date') {
       date = string.split('.').reverse();
-      date = new Date(date[0], date[1], date[2]);
+      date = new Date(date[0], date[1] - 1, date[2]);
     }
     return date;
   };
