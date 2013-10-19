@@ -42,8 +42,6 @@ function CalendarCtrl($scope, Api) {
     }
   });
 
-  $scope.selectedDate = date;
-
   $scope.goToDate = function (date) {
     date = createDateFromString(date);
     $scope.myCalendar2.fullCalendar('gotoDate', date.getFullYear(), date.getMonth(), date.getDate());
@@ -52,8 +50,7 @@ function CalendarCtrl($scope, Api) {
   /* alert on eventClick */
   $scope.alertEventOnClick = function( date, allDay, jsEvent, view ){
     $scope.$apply(function(){
-      $scope.selectedDate = date;
-      $scope.alertMessage = ('Day Clicked ' + date);
+      $scope.addEvent(date);
     });
   };
   /* alert on Drop */
