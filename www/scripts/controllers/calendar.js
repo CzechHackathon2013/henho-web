@@ -4,7 +4,8 @@ function CalendarCtrl($scope) {
   var d = date.getDate();
   var m = date.getMonth();
   var y = date.getFullYear();
-  /* event source that pulls from google.com */
+
+  $scope.selectedDate = date;
   $scope.eventSource = {
     url: "http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic",
     className: 'gcal-event',           // an option!
@@ -30,6 +31,7 @@ function CalendarCtrl($scope) {
   /* alert on eventClick */
   $scope.alertEventOnClick = function( date, allDay, jsEvent, view ){
     $scope.$apply(function(){
+      $scope.selectedDate = date;
       $scope.alertMessage = ('Day Clicked ' + date);
     });
   };
@@ -45,25 +47,13 @@ function CalendarCtrl($scope) {
       $scope.alertMessage = ('Event Resized to make dayDelta ' + minuteDelta);
     });
   };
-  /* add and removes an event source of choice */
-  $scope.addRemoveEventSource = function(sources,source) {
-    var canAdd = 0;
-    angular.forEach(sources,function(value, key){
-      if(sources[key] === source){
-        sources.splice(key,1);
-        canAdd = 1;
-      }
-    });
-    if(canAdd === 0){
-      sources.push(source);
-    }
-  };
+
   /* add custom event*/
-  $scope.addEvent = function() {
+  $scope.addEvent = function(selectedDate) {
     $scope.events.push({
-      title: 'Open Sesame',
-      start: new Date(y, m, 28),
-      end: new Date(y, m, 29),
+      title: 'New event!!',
+      start: selectedDate,
+      end: selectedDate,
       className: ['openSesame']
     });
   };
