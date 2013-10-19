@@ -1,12 +1,18 @@
 'use strict';
+angular.module('henho.filter', []);
+angular.module('henho.directive', []);
+//angular.module('henho.controller', []);
+angular.module('henho.service', ['ngResource']);
 
-angular.module('henhoApp', [
-  'ngCookies',
-  'ngResource',
+var henho = angular.module('henho', [
+  'henho.filter',
+  'henho.directive',
+  'henho.service',
   'ngSanitize',
   'ui.calendar'
-])
-  .config(function ($routeProvider) {
+]);
+
+henho.config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -17,7 +23,6 @@ angular.module('henhoApp', [
       });
   });
 
-angular.module('henhoApp')
-  .config(function($httpProvider){
+henho.config(function($httpProvider){
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
   });

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('henhoApp')
+angular.module('henho')
   .controller('MainCtrl', function ($scope) {
 
   });
