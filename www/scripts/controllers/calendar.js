@@ -72,7 +72,7 @@ function CalendarCtrl($scope, Api) {
     firstDay: 1,
     height: 450,
     editable: true,
-    slotMinutes: 15,
+    slotMinutes: 30,
     header:{
       left: 'agendaWeek,agendaDay',
       center: '',
@@ -80,7 +80,8 @@ function CalendarCtrl($scope, Api) {
     },
     dayClick: $scope.alertEventOnClick,
     eventRender: function (view, el) {
-      for(var i = 0; i <= 48; i++) {
+      var multiple = 60 / this.slotMinutes;
+      for(var i = 0; i <= this.slotMinutes * multiple; i++) {
         $('.fc-slot' + i).removeClass('editableRow');
       }
       angular.forEach($scope.events, function (item) {
