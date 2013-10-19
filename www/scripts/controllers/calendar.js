@@ -83,11 +83,11 @@ function CalendarCtrl($scope, Api) {
         $('.fc-slot' + i).removeClass('editableRow');
       }
       angular.forEach($scope.events, function (item) {
-        if(item.start >= view.start && item.start <= view.end) {
+        if(item.start >= view.start && item.start < view.end) {
           var startRows = item.start.getHours() * 2;
           var endRows = (item.end.getHours() * 2) - 1;
           for(var i = startRows; i <= endRows; i++) {
-            $('.fc-slot' + i).addClass('editableRow');
+            $('.fc-slot' + i + ' td').addClass('editableRow');
           }
         }
 
