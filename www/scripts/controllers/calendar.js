@@ -32,14 +32,6 @@ function CalendarCtrl($scope, Api) {
     $scope.myCalendar2.fullCalendar('gotoDate', date.getFullYear(), date.getMonth(), date.getDate());
   };
 
-  /* event source that calls a function on every view switch */
-  $scope.eventsF = function (start, end, callback) {
-    var s = new Date(start).getTime() / 1000;
-    var e = new Date(end).getTime() / 1000;
-    var m = new Date(start).getMonth();
-    var events = [{title: 'Feed Me ' + m,start: s + (50000),end: s + (100000),allDay: false, className: ['customFeed']}];
-    callback(events);
-  };
   /* alert on eventClick */
   $scope.alertEventOnClick = function( date, allDay, jsEvent, view ){
     $scope.$apply(function(){
@@ -95,6 +87,6 @@ function CalendarCtrl($scope, Api) {
   };
 
   /* event sources array*/
-  $scope.eventSources = [$scope.events, $scope.eventsF];
+  $scope.eventSources = [$scope.events];
 }
 /* EOF */
