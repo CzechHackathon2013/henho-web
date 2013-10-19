@@ -9,8 +9,12 @@ function CalendarCtrl($scope, Api) {
   var y = date.getFullYear();
 
   var createDateFromString = function (string) {
-    var date = string.split('.').reverse();
-    return new Date(date[0], date[1], date[2]);
+    var date = new Date(string);
+    if(!date || date == 'Invalid Date') {
+      date = string.split('.').reverse();
+      date = new Date(date[0], date[1], date[2]);
+    }
+    return date;
   };
 
   $scope.events = [];
@@ -20,7 +24,7 @@ function CalendarCtrl($scope, Api) {
 
     if(meeting.proposedTimes && meeting.proposedTimes.length) {
       angular.forEach(meeting.proposedTimes, function (item) {
-        $scope.addEvent(createDateFromString(item.date));
+        $scope.addEvent(item.date);
       });
     }
   });
@@ -54,9 +58,9 @@ function CalendarCtrl($scope, Api) {
 
   /* add custom event*/
   $scope.addEvent = function(selectedDate, endDate) {
+    selectedDate = createDateFromString(selectedDate);
     var event = {
-      title: selectedDate + '',
-      date: selectedDate,
+      title: selectedDate.getDate() + '.' + selectedDate.getMonth() + '.' + selectedDate.getFullYear(),
       start: selectedDate,
       end: endDate || selectedDate,
       allDay: false,
