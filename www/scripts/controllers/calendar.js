@@ -79,23 +79,7 @@ function CalendarCtrl($scope, Api) {
       center: '',
       right: ''
     },
-    eventClick: $scope.onEventClick,
-    eventRender: function (view, el) {
-      var multiple = 60 / this.slotMinutes;
-      for(var i = 0; i <= this.slotMinutes * multiple; i++) {
-        $('.fc-slot' + i).removeClass('editableRow');
-      }
-      angular.forEach($scope.events, function (item) {
-        if(item.start >= view.start && item.start < view.end) {
-          var startRows = item.start.getHours() * 2;
-          var endRows = (item.end.getHours() * 2) - 1;
-          for(var i = startRows; i <= endRows; i++) {
-            $('.fc-slot' + i + ' td').addClass('editableRow');
-          }
-        }
-
-      });
-    }
+    eventClick: $scope.onEventClick
   };
 
   /* event sources array*/
