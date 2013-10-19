@@ -3,7 +3,8 @@
 angular.module('henhoApp', [
   'ngCookies',
   'ngResource',
-  'ngSanitize'
+  'ngSanitize',
+  'ui.calendar'
 ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -14,4 +15,9 @@ angular.module('henhoApp', [
       .otherwise({
         redirectTo: '/'
       });
+  });
+
+angular.module('henhoApp')
+  .config(function($httpProvider){
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
   });
