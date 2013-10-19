@@ -1,9 +1,5 @@
 
-<section id="directives-calendar" ng-controller="CalendarCtrl">
-    <div class="page-header">
-        <h1>HenHo</h1>
-    </div>
-
+<section id="directives-calendar" ng-controller="EventsCtrl">
     <div ng-show="meeting">
         <div class="row">
             <div class="span12">
@@ -12,22 +8,32 @@
             </div>
         </div>
         <div class="well">
-            <div class="row-fluid">
-                <div class="span2">
-                    <h4>Meets day</h4>
-                    <ul class="unstyled">
-                        <li ng-repeat="(name, date) in dates">
-                            <div class="alert alert-info">
-                                <a ng-click="goToDate(name)"><b>{{ name }}</b></a>
+            <div class="row">
+                <div class="span12">
+                    <div ng-repeat="(timestamp, events) in dates" class="row">
+                        <div class="span11">
+                            <div class="alert alert-blocked">
+                                <div class="row">
+                                    <div class="span2">
+                                        <h3>{{ timestamp | date:'EEE' }}</h3>
+                                        <strong>{{ timestamp | date }}</strong>
+                                    </div>
+                                    <div class="span8">
+                                        <div class="row" ng-repeat="event in events">
+                                            <div class="span3">
+                                                <h4>{{ event.start }}</h4>
+                                                <input type="time" max="{{ event.end }}" min="{{ event.start }}" style="width: 80px;" value="{{ event.start }}">
+                                            </div>
+                                            <div class="span3">
+                                                <h4>{{ event.end }}</h4>
+                                                <input type="time" max="{{ event.end }}" min="{{ event.start }}" style="width: 80px;" value="{{ event.end }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <input id="pickadate" class="fieldset__input js__timepicker picker__input picker__input--active" type="text" placeholder="Try me…" ng-model="selectedStart">
-
-                <div class="span10">
-                    <div class="calendar" ng-model="eventSources1" calendar="myCalendar1" config="calendar1" ui-calendar="calendar1"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
