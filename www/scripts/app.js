@@ -24,5 +24,6 @@ henho.config(function ($routeProvider) {
   });
 
 henho.config(function($httpProvider){
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
-  });
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+  $httpProvider.defaults.useXDomain = true;
+});
