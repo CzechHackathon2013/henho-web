@@ -1,13 +1,18 @@
 <div class="modal-header">
     <h3>I'm a modal!</h3>
 </div>
-<div class="modal-body">
-    <ul>
-        <li ng-repeat="item in items">
-            <a ng-click="selected.item = item">{{ item }}</a>
-        </li>
-    </ul>
-    Selected: <b>{{ selected.item }}</b>
+<div class="modal-body" id="pickadateContainer">
+    {{ selectedStart }}
+
+    <script>
+        $(document).ready(function () {
+            $('#pickadate').pickatime({
+                onSet: function (e) {
+                    dump(e);
+                }
+            });
+        });
+    </script>
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="ok()">OK</button>

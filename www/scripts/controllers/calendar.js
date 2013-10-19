@@ -53,18 +53,25 @@ function CalendarCtrl($scope, $modal, Api) {
   $scope.onEventClick = function(event){
 //    dump(event);
     $scope.$apply(function () {
-      var modalInstance = $modal.open({
-        templateUrl: '/views/modals/timepicker.html',
-        controller: ModalCtrl,
-        resolve: {
-          event: function () {
-            return event;
-          }
+      $pi = $('#pickadate').pickatime({
+        onSet: function (e) {
+          dump(e);
         }
       });
-
-      modalInstance.result.then(function (event) {
-    });
+      var picker = $pi.pickatime('pickadate');
+      picker.open();
+//      var modalInstance = $modal.open({
+//        templateUrl: '/views/modals/timepicker.html',
+//        controller: ModalCtrl,
+//        resolve: {
+//          event: function () {
+//            return event;
+//          }
+//        }
+//      });
+//
+//      modalInstance.result.then(function (event) {
+//    });
 
 
     });
