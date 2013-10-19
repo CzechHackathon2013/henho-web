@@ -74,8 +74,9 @@ function CalendarCtrl($scope, Api) {
     $scope.addEditableEvent($scope.meeting.subject || '', start, end)
   };
   /* Change View */
-  $scope.changeView = function(view,calendar) {
-    calendar.fullCalendar('changeView',view);
+  $scope.changeView = function(view) {
+    $scope.myCalendar1.fullCalendar('changeView',view);
+    $scope.myCalendar2.fullCalendar('changeView',view);
   };
   /* config object */
   $scope.uiConfig = {
