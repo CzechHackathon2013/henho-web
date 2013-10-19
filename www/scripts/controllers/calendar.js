@@ -20,22 +20,37 @@ function CalendarCtrl($scope, Api) {
     if(meeting.proposedTimes && meeting.proposedTimes.length) {
       angular.forEach(meeting.proposedTimes, function (item) {
         var day = createDateFromString(item.date);
-
-        $scope.events.push({
-          title: meeting.subject || '',
-          start: new Date(day.getTime() + (item.start.split(':')[0] * 60 * 60 * 1000)),
-          end: new Date(day.getTime() + (item.end.split(':')[0] * 60 * 60 * 1000)),
-          allDay: false,
-          durationEditable: false,
-          startEditable: false,
-          editable: true,
-          color: 'grey',
-          textColor: 'black',
-          className: ['proposedTime']
-        });
+        var start = new Date(day.getTime() + (item.start.split(':')[0] * 60 * 60 * 1000))
+        var end = new Date(day.getTime() + (item.end.split(':')[0] * 60 * 60 * 1000));
+        $scope.addDisabledEvent(item.subject, start, end);
       });
     }
   });
+
+  $scope.addEditableEvent = function (title, start, end) {
+    $scope.events.push({
+      title: title,
+      start: start,
+      end: end,
+      allDay: false,
+      className: ['editableTime']
+    })
+  };
+
+  $scope.addDisabledEvent = function (title, start, end) {
+    $scope.events.push({
+      title: title,
+      start: start,
+      end: end,
+      allDay: false,
+      durationEditable: false,
+      startEditable: false,
+      editable: true,
+      color: 'grey',
+      textColor: 'black',
+      className: ['disabledTime']
+    });
+  };
 
   $scope.goToDate = function (date) {
     date = createDateFromString(date);
@@ -51,15 +66,9 @@ function CalendarCtrl($scope, Api) {
 
   /* add custom event*/
   $scope.addEvent = function(selectedDate) {
-    selectedDate = new Date(selectedDate);
-    var event = {
-      title: $scope.meeting.subject || '',
-      start: selectedDate,
-      end: new Date(selectedDate.getTime() + (60*60*1000)),
-      allDay: false,
-      className: ['openSesame']
-    };
-    $scope.events.push(event);
+    var start = new Date(selectedDate);
+    var end = new Date(selectedDate.getTime() + (60*60*1000));
+    $scope.addEditableEvent($scope.meeting.subject || '', start, end)
   };
   /* Change View */
   $scope.changeView = function(view,calendar) {
