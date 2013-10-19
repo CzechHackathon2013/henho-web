@@ -35,6 +35,7 @@ function CalendarCtrl($scope, Api) {
       start: start,
       end: end,
       allDay: false,
+      startEditable: false,
       className: ['editableTime']
     })
   };
