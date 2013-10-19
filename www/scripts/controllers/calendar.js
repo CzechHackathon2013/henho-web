@@ -3,11 +3,6 @@ var dump = function (v) {
 };
 
 function CalendarCtrl($scope, Api) {
-  var date = new Date();
-  var d = date.getDate();
-  var m = date.getMonth();
-  var y = date.getFullYear();
-
   var createDateFromString = function (string) {
     var date = new Date(string);
     if(!date || date == 'Invalid Date') {
@@ -53,18 +48,6 @@ function CalendarCtrl($scope, Api) {
       $scope.addEvent(date);
     });
   };
-  /* alert on Drop */
-  $scope.alertOnDrop = function(event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view){
-    $scope.$apply(function(){
-      $scope.alertMessage = ('Event Droped to make dayDelta ' + dayDelta);
-    });
-  };
-  /* alert on Resize */
-  $scope.alertOnResize = function(event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view ){
-    $scope.$apply(function(){
-      $scope.alertMessage = ('Event Resized to make dayDelta ' + minuteDelta);
-    });
-  };
 
   /* add custom event*/
   $scope.addEvent = function(selectedDate) {
@@ -93,9 +76,7 @@ function CalendarCtrl($scope, Api) {
         center: '',
         right: 'today prev,next'
       },
-      dayClick: $scope.alertEventOnClick,
-      eventDrop: $scope.alertOnDrop,
-      eventResize: $scope.alertOnResize
+      dayClick: $scope.alertEventOnClick
     }
   };
 
