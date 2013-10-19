@@ -31,7 +31,7 @@
                     <ul class="unstyled">
                         <li ng-repeat="e in meeting.proposedTime">
                             <div class="alert alert-info">
-                                <b>{{e.date}}</b>
+                                <a ng-click="goToEvent(e)"><b>{{e.date}}</b></a>
                             </div>
                         </li>
                     </ul>
