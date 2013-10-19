@@ -79,19 +79,29 @@ function CalendarCtrl($scope, Api) {
     $scope.myCalendar1.fullCalendar('changeView',view);
     $scope.myCalendar2.fullCalendar('changeView',view);
   };
-  /* config object */
-  $scope.uiConfig = {
-    calendar:{
-      defaultView: 'agendaDay',
-      firstDay: 1,
-      height: 450,
-      editable: true,
-      header:{
-        left: '',
-        center: '',
-        right: 'today prev,next'
-      },
-      dayClick: $scope.alertEventOnClick
+
+  $scope.calendar1 = {
+    defaultView: 'agendaDay',
+    firstDay: 1,
+    height: 450,
+    editable: true,
+    header:{
+      left: '',
+      center: '',
+      right: 'today prev,next'
+    },
+    dayClick: $scope.alertEventOnClick
+  };
+
+  $scope.calendar2 = {
+    defaultView: 'agendaDay',
+    firstDay: 1,
+    height: 450,
+    editable: true,
+    header:{
+      left: '',
+      center: '',
+      right: 'today prev,next'
     }
   };
 
