@@ -12,6 +12,7 @@ function CalendarCtrl($scope, Api) {
     return date;
   };
 
+  $scope.disabledEvents = [];
   $scope.events = [];
 
   Api.metting.show({id: '1'}, function (meeting) {
@@ -23,6 +24,7 @@ function CalendarCtrl($scope, Api) {
         var start = new Date(day.getTime() + (item.start.split(':')[0] * 60 * 60 * 1000))
         var end = new Date(day.getTime() + (item.end.split(':')[0] * 60 * 60 * 1000));
         $scope.addDisabledEvent(item.subject, start, end);
+        $scope.addEditableEvent(item.subject, start, end);
       });
     }
   });
@@ -38,7 +40,7 @@ function CalendarCtrl($scope, Api) {
   };
 
   $scope.addDisabledEvent = function (title, start, end) {
-    $scope.events.push({
+    $scope.disabledEvents.push({
       title: title,
       start: start,
       end: end,
@@ -92,6 +94,7 @@ function CalendarCtrl($scope, Api) {
   };
 
   /* event sources array*/
-  $scope.eventSources = [$scope.events];
+  $scope.eventSources1 = [$scope.events];
+  $scope.eventSources2 = [$scope.disabledEvents];
 }
 /* EOF */
