@@ -1,44 +1,49 @@
+<div class="container">
+    <div class="page-header hidden-phone">
+        <a ng-href="#/"><h1>HenHo</h1></a>
+    </div>
 
-<section id="directives-calendar">
-    <div ng-show="meeting">
-        <div class="row">
-            <div class="span12">
-                <h2>{{ meeting.subject }}</h2>
-                <p>{{ meeting.note }}</p>
-            </div>
-        </div>
-        <div class="well">
+    <section id="directives-calendar">
+        <div ng-show="meeting">
             <div class="row">
-                <div class="span11">
-                    <p>
-                        <strong>Plan your upcoming meeting</strong>
-                    </p>
-                    <div ng-repeat="(timestamp, events) in dates" class="row">
-                        <div class="span11">
-                            <div class="alert alert-blocked">
-                                <div class="row">
-                                    <div class="span2">
-                                        <h3>{{ timestamp | date:'EEE' }}</h3>
-                                        <strong>{{ timestamp | date }}</strong>
-                                    </div>
-                                    <div class="span8">
-                                        <div class="row" ng-repeat="event in events">
-                                            <div class="span2">
-                                                <h4>{{ event.start }}</h4>
-                                                <input type="time" max="{{ event.end }}" min="{{ event.start }}" style="width: 80px;" ng-model="event.confirmedStart"  ng-hide="event.declined">
-                                            </div>
-                                            <div class="span1">
-                                                -
-                                            </div>
-                                            <div class="span2">
-                                                <h4>{{ event.end }}</h4>
-                                                <input type="time" max="{{ event.end }}" min="{{ event.start }}" style="width: 80px;" ng-model="event.confirmedEnd"  ng-hide="event.declined">
-                                            </div>
-                                            <div class="span3">
-                                                <input type="checkbox" ng-model="event.declined">
-                                                I have no time in this interval
-                                            </div>
+                <div class="span12">
+                    <h2>{{ meeting.subject }}</h2>
+                    <p>{{ meeting.note }}</p>
+                </div>
+            </div>
+            <div class="well">
+                <div class="row">
+                    <div class="span11">
+                        <p>
+                            <strong>Plan your upcoming meeting</strong>
+                        </p>
+                        <div ng-repeat="(timestamp, events) in dates" class="row">
+                            <div class="span11">
+                                <div class="alert alert-blocked">
+                                    <div class="row">
+                                        <div class="span2">
+                                            <h3>{{ timestamp | date:'EEE' }}</h3>
+                                            <strong>{{ timestamp | date }}</strong>
+                                        </div>
+                                        <div class="span8">
+                                            <div class="row" ng-repeat="event in events">
+                                                <div class="span2">
+                                                    <h4>{{ event.start }}</h4>
+                                                    <input type="time" max="{{ event.end }}" min="{{ event.start }}" style="width: 80px;" ng-model="event.confirmedStart"  ng-hide="event.declined">
+                                                </div>
+                                                <div class="span1">
+                                                    -
+                                                </div>
+                                                <div class="span2">
+                                                    <h4>{{ event.end }}</h4>
+                                                    <input type="time" max="{{ event.end }}" min="{{ event.start }}" style="width: 80px;" ng-model="event.confirmedEnd"  ng-hide="event.declined">
+                                                </div>
+                                                <div class="span3">
+                                                    <input type="checkbox" ng-model="event.declined">
+                                                    I have no time in this interval
+                                                </div>
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -46,28 +51,28 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="span11">
-                    <div class="row">
-                        <div class="span2">
-                            <h4>Note:</h4>
-                        </div>
-                        <div class="span9">
-                            <textarea ng-model="note" class="input-xxlarge"></textarea>
-                            <p class="help-block">Note for event's author</p>
+                <div class="row">
+                    <div class="span11">
+                        <div class="row">
+                            <div class="span2">
+                                <h4>Note:</h4>
+                            </div>
+                            <div class="span9">
+                                <textarea ng-model="note" class="input-xxlarge"></textarea>
+                                <p class="help-block">Note for event's author</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="span11" style="text-align: right;">
-                    <div class="form-actions">
-                        <button type="button" class="btn btn-large" ng-click="declineMeeting()">I have no time</button>
-                        <button type="button" class="btn btn-primary btn-large" ng-click="confirmMeeting()">Done</button>
+                <div class="row">
+                    <div class="span11" style="text-align: right;">
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-large" ng-click="declineMeeting()">I have no time</button>
+                            <button type="button" class="btn btn-primary btn-large" ng-click="confirmMeeting()">Done</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>

@@ -1,7 +1,11 @@
 body {
-    background: #fafafa;
+    background: #008FFF;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
+}
+
+.page-header {
+    border-bottom: 1px solid #008FFF;
 }
 
 .hero-unit {
@@ -31,4 +35,24 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.vert-text {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.vert-text h1 {
+    padding: 0;
+    margin: 0;
+    font-size: 4.5em;
+    font-weight: 700;
+}
+
+.centered {
+    position: fixed;
+    top: 30%;
+    right: 15%;
+    left: 15%;
 }
