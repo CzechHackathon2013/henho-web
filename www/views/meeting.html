@@ -9,7 +9,10 @@
         </div>
         <div class="well">
             <div class="row">
-                <div class="span12">
+                <div class="span11">
+                    <p>
+                        <strong>Plan your upcoming meeting</strong>
+                    </p>
                     <div ng-repeat="(timestamp, events) in dates" class="row">
                         <div class="span11">
                             <div class="alert alert-blocked">
@@ -24,13 +27,16 @@
                                                 <h4>{{ event.start }}</h4>
                                                 <input type="time" max="{{ event.end }}" min="{{ event.start }}" style="width: 80px;" ng-model="event.confirmedStart"  ng-hide="event.declined">
                                             </div>
+                                            <div class="span1">
+                                                -
+                                            </div>
                                             <div class="span2">
                                                 <h4>{{ event.end }}</h4>
                                                 <input type="time" max="{{ event.end }}" min="{{ event.start }}" style="width: 80px;" ng-model="event.confirmedEnd"  ng-hide="event.declined">
                                             </div>
-                                            <div class="span4">
+                                            <div class="span3">
                                                 <input type="checkbox" ng-model="event.declined">
-                                                I have no time in this time interval
+                                                I have no time in this interval
                                             </div>
 
                                         </div>
