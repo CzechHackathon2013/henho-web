@@ -17,6 +17,7 @@ function MeetingCtrl ($scope, $routeParams, $location, Api) {
         item.timestamp = item.date.getTime();
         item.confirmedStart = item.start;
         item.confirmedEnd = item.end;
+        item.declined = false;
 
         if(!$scope.dates[item.timestamp]) {
           $scope.dates[item.timestamp] = [];
@@ -30,6 +31,15 @@ function MeetingCtrl ($scope, $routeParams, $location, Api) {
   });
 
   $scope.confirmMeeting = function () {
+    var times = [];
+    angular.forEach($scope.dates, function (events) {
+      angular.forEach(events, function (event) {
+        if(!event.declined) {
+          times.push(event);
+        }
+      });
+    });
+
     Api.acceptedTime.create({
       id: id,
       times: []
