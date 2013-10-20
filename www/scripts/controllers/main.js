@@ -1,6 +1,5 @@
 'use strict';
 
-angular.module('henho')
-  .controller('MainCtrl', function ($scope) {
+function MainCtrl ($scope) {
 
-  });
+}

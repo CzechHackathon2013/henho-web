@@ -1,0 +1,54 @@
+
+<section id="directives-calendar">
+    <div ng-show="meeting">
+        <div class="row">
+            <div class="span12">
+                <h2>{{ meeting.subject }}</h2>
+                <p>{{ meeting.note }}</p>
+            </div>
+        </div>
+        <div class="well">
+            <div class="row">
+                <div class="span12">
+                    <div ng-repeat="(timestamp, events) in dates" class="row">
+                        <div class="span11">
+                            <div class="alert alert-blocked">
+                                <div class="row">
+                                    <div class="span2">
+                                        <h3>{{ timestamp | date:'EEE' }}</h3>
+                                        <strong>{{ timestamp | date }}</strong>
+                                    </div>
+                                    <div class="span8">
+                                        <div class="row" ng-repeat="event in events">
+                                            <div class="span2">
+                                                <h4>{{ event.start }}</h4>
+                                                <input type="time" max="{{ event.end }}" min="{{ event.start }}" style="width: 80px;" ng-model="event.confirmedStart"  ng-hide="event.declined">
+                                            </div>
+                                            <div class="span2">
+                                                <h4>{{ event.end }}</h4>
+                                                <input type="time" max="{{ event.end }}" min="{{ event.start }}" style="width: 80px;" ng-model="event.confirmedEnd"  ng-hide="event.declined">
+                                            </div>
+                                            <div class="span4">
+                                                <input type="checkbox" ng-model="event.declined">
+                                                I have no time in this time interval
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span11" style="text-align: right;">
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-large" ng-click="declineMeeting()">I have no time</button>
+                        <button type="button" class="btn btn-primary btn-large" ng-click="confirmMeeting()">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

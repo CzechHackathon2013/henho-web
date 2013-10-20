@@ -1,8 +1,14 @@
-function EventsCtrl ($scope, Api) {
+function MeetingCtrl ($scope, $routeParams, $location, Api) {
+  var id = $routeParams.id || null;
+
+  if(!id) {
+    $location.path('/');
+    return;
+  }
 
   $scope.dates = {};
 
-  Api.metting.show({id: '1'}, function (meeting) {
+  Api.metting.show({id: id}, function (meeting) {
     $scope.meeting = meeting;
 
     if(meeting.proposedTimes && meeting.proposedTimes.length) {
@@ -19,17 +25,29 @@ function EventsCtrl ($scope, Api) {
         $scope.dates[item.timestamp].push(item);
       });
     }
+  }, function () {
+    $location.path('/');
   });
 
   $scope.confirmMeeting = function () {
-    dump($scope.dates);
+    Api.acceptedTime.create({
+      id: id,
+      times: []
+    }, function () {
+      $location.path('/meeting/done');
+    }, function () {
+      $location.path('/meeting/error');
+    });
   };
 
   $scope.declineMeeting = function () {
-    angular.forEach($scope.dates, function (events) {
-      angular.forEach(events, function (event) {
-        event.declined = true;
-      });
+    Api.acceptedTime.create({
+      id: id,
+      times: []
+    }, function () {
+      $location.path('/meeting/done');
+    }, function () {
+      $location.path('/meeting/error');
     });
   }
 }

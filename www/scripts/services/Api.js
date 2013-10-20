@@ -8,6 +8,10 @@ angular.module('henho.service').factory('Api', ['$resource', function ($resource
     create: {method: 'POST'}
   });
 
+  api.acceptedTime = $resource(url + '/meetings/:id/accepted-times', {id: '@id'}, {
+    create: {method: 'POST'}
+  });
+
 
   return api;
 }]);

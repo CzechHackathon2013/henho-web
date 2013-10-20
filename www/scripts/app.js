@@ -15,9 +15,19 @@ var henho = angular.module('henho', [
 
 henho.config(function ($routeProvider) {
     $routeProvider
+      .when('/meeting/done', {
+        templateUrl: 'views/meeting-done.html'
+      })
+      .when('/meeting/error', {
+        templateUrl: 'views/meeting-error.html'
+      })
+      .when('/meeting/:id', {
+        templateUrl: 'views/meeting.html',
+        controller: MeetingCtrl
+      })
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: MainCtrl
       })
       .otherwise({
         redirectTo: '/'
