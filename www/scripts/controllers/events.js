@@ -9,6 +9,9 @@ function EventsCtrl ($scope, Api) {
       angular.forEach(meeting.proposedTimes, function (item) {
         item.date = createDateFromString(item.date);
         item.timestamp = item.date.getTime();
+        item.confirmedStart = item.start;
+        item.confirmedEnd = item.end;
+
         if(!$scope.dates[item.timestamp]) {
           $scope.dates[item.timestamp] = [];
         }
