@@ -22,11 +22,11 @@
                                         <div class="row" ng-repeat="event in events">
                                             <div class="span3">
                                                 <h4>{{ event.start }}</h4>
-                                                <input type="time" max="{{ event.end }}" min="{{ event.start }}" style="width: 80px;" value="{{ event.start }}">
+                                                <input type="time" max="{{ event.end }}" min="{{ event.start }}" style="width: 80px;" ng-model="event.start">
                                             </div>
                                             <div class="span3">
                                                 <h4>{{ event.end }}</h4>
-                                                <input type="time" max="{{ event.end }}" min="{{ event.start }}" style="width: 80px;" value="{{ event.end }}">
+                                                <input type="time" max="{{ event.end }}" min="{{ event.start }}" style="width: 80px;" ng-model="event.end">
                                             </div>
                                         </div>
                                     </div>
@@ -34,6 +34,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span11" style="text-align: right;">
+                    <button type="button" class="btn btn-primary btn-large" ng-click="confirmMeeting()">Done</button>
                 </div>
             </div>
         </div>

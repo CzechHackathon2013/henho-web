@@ -1,7 +1,6 @@
 function EventsCtrl ($scope, Api) {
 
   $scope.dates = {};
-  $scope.events = [];
 
   Api.metting.show({id: '1'}, function (meeting) {
     $scope.meeting = meeting;
@@ -11,11 +10,15 @@ function EventsCtrl ($scope, Api) {
         item.date = createDateFromString(item.date);
         item.timestamp = item.date.getTime();
         if(!$scope.dates[item.timestamp]) {
-          $scope.dates[item.timestamp] = []
+          $scope.dates[item.timestamp] = [];
         }
 
         $scope.dates[item.timestamp].push(item);
       });
     }
   });
+
+  $scope.confirmMeeting = function () {
+    dump($scope.dates);
+  }
 }
