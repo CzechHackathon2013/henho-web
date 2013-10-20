@@ -35,6 +35,8 @@ function MeetingCtrl ($scope, $routeParams, $location, Api) {
     angular.forEach($scope.dates, function (events) {
       angular.forEach(events, function (event) {
         if(!event.declined) {
+          event.start = event.confirmedStart;
+          event.end = event.confirmedEnd;
           times.push(event);
         }
       });
