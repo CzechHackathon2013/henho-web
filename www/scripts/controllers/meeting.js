@@ -42,7 +42,8 @@ function MeetingCtrl ($scope, $routeParams, $location, Api) {
 
     Api.acceptedTime.create({
       id: id,
-      times: []
+      times: [],
+      note: $scope.note
     }, function () {
       $location.path('/meeting/done');
     }, function () {
@@ -53,7 +54,8 @@ function MeetingCtrl ($scope, $routeParams, $location, Api) {
   $scope.declineMeeting = function () {
     Api.acceptedTime.create({
       id: id,
-      times: []
+      times: [],
+      note: $scope.note
     }, function () {
       $location.path('/meeting/done');
     }, function () {
