@@ -23,5 +23,13 @@ function EventsCtrl ($scope, Api) {
 
   $scope.confirmMeeting = function () {
     dump($scope.dates);
+  };
+
+  $scope.declineMeeting = function () {
+    angular.forEach($scope.dates, function (events) {
+      angular.forEach(events, function (event) {
+        event.declined = true;
+      });
+    });
   }
 }
